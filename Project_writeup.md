@@ -72,6 +72,7 @@ spatial_size = (32,32)
 
 
 ```
+I amde the study for different color spaces which are available in code cells:14,15,16,17,18,19,20. Using YCrCb color space, it became easy to deal with false positives.
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
