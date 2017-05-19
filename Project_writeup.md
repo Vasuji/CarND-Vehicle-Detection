@@ -77,7 +77,7 @@ I amde the study for different color spaces which are available in code cells:14
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I used both color feature and hog features (using color chanel = YCrCb) and codes are available at 24,25,26,27,28 code block of notebook under the topics classifier.
-I shuffled the data and splited them into test and train and used ```LinearSVC``` with default setting of ```square-hinged``` loss function and ```l2``` normalization. I got accuracy of ```98.96% ~ 99%``` on test dataset. The trained model alongwith parameter used were saved in ```svc_pickle.p``` file.
+I shuffled the data and splited them into test and train and used ```LinearSVC``` with default setting of ```square-hinged``` loss function and ```l2``` normalization. I got accuracy of ```~ 99%``` on test dataset. The trained model alongwith parameter used were saved in ```svc_pickle.p``` file.
 
 -------------
 
@@ -110,7 +110,7 @@ Following are the images for multi scale sliding windows:
 
   First of all I recorded the position of positive detections in each frame of the video. Those positive detection were further used to create a heatmap and threshold was used to identify actual vehicle position. I further used ```label``` to find individual blobs in the heatmap. Then a bounding box was created including those individual blobs.
 
-  I optimized the search by skiping 4 frames before processing one complete frame and those skipped frames were also approached by restricted search. The restricted search was performed by appending 50 pixel to the heatmap found in last three frames.
+  I optimized the search by skiping 4 frames before processing one complete frame and those skipped frames were also approached by restricted search. The restricted search was performed by appending 50 pixel to the heatmap found in last 3 frames.
   
   codes for this steps are available at code cell at 34 where there is ```DetectVehicle``` class and associated functions and data.
   
