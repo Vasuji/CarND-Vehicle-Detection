@@ -148,3 +148,12 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
 
+1. A neural network is a good candidiate to try out for building classifier model. I would try this out for fun.
+2. Multi window search could be optimized further, what I implemented could be poor one.
+3. This model may fail even if there are different lightening and intensities or the illumination conditions.
+4. Feature extraction step could me made more precise and best representetive for the data.
+
+
+
+
+
