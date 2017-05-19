@@ -13,7 +13,8 @@ The goals / steps of this project are the following:
 [image1]: ./examples/car_not_car.png
 [image2]: ./examples/HOG_example.jpg
 [image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
+[image4a]: ./examples/pipeline1.jpg
+[image4b]: ./examples/pipeline2.jpg
 [image5]: ./examples/bboxes_and_heat.png
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
@@ -76,7 +77,7 @@ spatial_size = (32,32)
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I used both color feature and hog features and codes are available at 24,25,26,27,28 code block of notebook under the topics classifier.
+I used both color feature and hog features (using color chanel = YCrCb) and codes are available at 24,25,26,27,28 code block of notebook under the topics classifier.
 I shuffled the data and splited them into test and train and used ```LinearSVC``` with default setting of ```square-hinged``` loss function and ```l2``` normalization. I got accuracy of ```98.96% ~ 99%``` on test dataset. The trained model alongwith parameter used were saved in ```svc_pickle.p``` file.
 
 -------------
@@ -88,19 +89,17 @@ I shuffled the data and splited them into test and train and used ```LinearSVC``
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
-
+Instead of using whole image, the multi-scale window approach prevents calculation of feature vectors for the complete image and thus helps in speeding up the process. I used the following set of  ```ystart, ystop``` and ```scale``` for sliding window search:
 
 ```
-(390, 500, 1),
-(410, 600, 1.8),
-(480, 650, 2.0),
-(500, 700, 2.5)
+[(360, 560, 1.5),
+(400, 600, 1.8), 
+(440, 700, 2.5)]
 ```
 
-The scale for the multi-window search and overlap to be considered was decided emperically.
+I determined the scale for the multi-window search and overlap by emperical study.
 
-The multi-scale window approach prevents calculation of feature vectors for the complete image and thus helps in speeding up the process. The following scales were emperically decided each having a overlap of 75% (decided by cells_per_step which is set as 2):
-
+Following are the images for multi scale sliding windows:
 
 
 
@@ -108,9 +107,16 @@ The multi-scale window approach prevents calculation of feature vectors for the 
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image4]
+
+  First of all I recorded the position of positive detections in each frame of the video. Those positive detection were further used to create a heatmap and threshold was used to identify actual vehicle position. I further used ```label``` to find individual blobs in the heatmap. Then a bounding box was created including those individual blobs.
+
+  I optimized the search by skiping 4 frames before processing one complete frame and those skipped frames were also approached by restricted search. The restricted search was performed by appending 50 pixel to the heatmap found in last three frames.
+  
+  Following are the images for pipeline:
+
+![alt text][image4a]
+![alt text][image4b]
 
 
 
@@ -123,7 +129,7 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./project_video_output.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
