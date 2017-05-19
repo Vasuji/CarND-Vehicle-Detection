@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 [image3]: ./examples/sliding_windows.jpg
 [image4a]: ./examples/pipeline1.jpg
 [image4b]: ./examples/pipeline2.jpg
-[image5]: ./examples/bboxes_and_heat.png
+[image5]: ./examples/heatmap.jpg
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
 [video1]: ./project_video.mp4
