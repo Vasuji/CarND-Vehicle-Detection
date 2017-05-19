@@ -112,7 +112,9 @@ Following are the images for multi scale sliding windows:
 
   I optimized the search by skiping 4 frames before processing one complete frame and those skipped frames were also approached by restricted search. The restricted search was performed by appending 50 pixel to the heatmap found in last three frames.
   
-  Following are the images for pipeline:
+  codes for this steps are available at code cell at 34 where there is ```DetectVehicle``` class and associated functions and data.
+  
+  Following are the images taken form the pipeline over test images:
 
 ![alt text][image4a]
 ![alt text][image4b]
