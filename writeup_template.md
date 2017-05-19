@@ -76,8 +76,8 @@ spatial_size = (32,32)
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
-
+I used both color feature and hog features and codes are available at 24,25,26,27,28 code block of notebook under the topics classifier.
+I shuffled the data and splited them into test and train and used ```LinearSVC``` with default setting of ```square-hinged``` loss function and ```l2``` normalization. I got accuracy of ```98.96% ~ 99%``` on test dataset. The trained model alongwith parameter used were saved in ```svc_pickle.p``` file.
 
 -------------
 
@@ -89,7 +89,20 @@ I trained a linear SVM using...
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+
+```
+(390, 500, 1),
+(410, 600, 1.8),
+(480, 650, 2.0),
+(500, 700, 2.5)
+```
+
+The scale for the multi-window search and overlap to be considered was decided emperically.
+
+The multi-scale window approach prevents calculation of feature vectors for the complete image and thus helps in speeding up the process. The following scales were emperically decided each having a overlap of 75% (decided by cells_per_step which is set as 2):
+
+
+
 
 ![alt text][image3]
 
